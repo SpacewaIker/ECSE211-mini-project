@@ -32,7 +32,7 @@ def collect_color_sensor_data():
             if TOUCHSensor.is_pressed():
                 col_data =  ColorSensor.get_value()  # Float value in centimeters 0, capped to 255 cm
             if col_data is not None:  # If None is given, then data collection failed that time
-                r,g,b,a =col_data
+                r,g,b,a = col_data
                 print((r,g, b))
                 output_file.write(f"{r,g,b}\n")
             sleep(DELAY_SEC)

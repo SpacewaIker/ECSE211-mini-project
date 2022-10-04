@@ -25,15 +25,16 @@ def collect_color_sensor_data():
         output_file = open(COLOR_SENSOR_DATA_FILE, "w")
         while not TOUCHSensor.is_pressed():
             pass  # do nothing while waiting for first button press
-            print("Touch sensor pressed")
-            sleep(1)
-            print("Starting to collect US distance samples")
+        print("Touch sensor pressed")
+        sleep(1)
+        print("Starting to collect US distance samples")
         while True:
             if TOUCHSensor.is_pressed():
                 col_data =  ColorSensor.get_value()  # Float value in centimeters 0, capped to 255 cm
             if col_data is not None:  # If None is given, then data collection failed that time
-                print(col_data)
-                output_file.write(f"{col_data}\n")
+                r,g,b,a =col_data
+                print((r,g, b))
+                output_file.write(f"{r,g,b}\n")
             sleep(DELAY_SEC)
     except BaseException:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)
         pass

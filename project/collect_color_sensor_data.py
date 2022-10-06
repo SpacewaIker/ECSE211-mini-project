@@ -9,7 +9,7 @@ It must be run on the robot.
 from utils.brick import EV3ColorSensor, wait_ready_sensors, TouchSensor, reset_brick
 from time import sleep
 
-COLOR_SENSOR_DATA_FILE = "../data_analysis/color_sensor.csv"
+COLOR_SENSOR_DATA_FILE = "../data_analysis/group1/red_color.csv"
 DELAY_SEC = 0.15  # seconds of delay between measurements
 # complete this based on your hardware setup
 COLOR_SENSOR = EV3ColorSensor(1)

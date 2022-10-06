@@ -12,8 +12,8 @@ from time import sleep
 COLOR_SENSOR_DATA_FILE = "../data_analysis/color_sensor.csv"
 DELAY_SEC = 0.15  # seconds of delay between measurements
 # complete this based on your hardware setup
-COLORSENSOR= EV3ColorSensor(1)
-TOUCHSENSOR= TouchSensor(2)
+COLOR_SENSOR = EV3ColorSensor(1)
+TOUCH_SENSOR = TouchSensor(2)
 
 wait_ready_sensors(True) # Input True to see what the robot is trying to initialize! False to be silent.
 
@@ -22,14 +22,14 @@ def collect_color_sensor_data():
     """Collect color sensor data."""
     try:
         output_file = open(COLOR_SENSOR_DATA_FILE, "w")
-        while not TOUCHSENSOR.is_pressed():
+        while not TOUCH_SENSOR.is_pressed():
             pass  # do nothing while waiting for first button press
         print("Touch sensor pressed")
         sleep(1)
         print("Starting to collect US distance samples")
         while True:
-            if TOUCHSENSOR.is_pressed():
-                col_data =  COLORSENSOR.get_value()  # Float value in centimeters 0, capped to 255 cm
+            if TOUCH_SENSOR.is_pressed():
+                col_data = COLOR_SENSOR.get_value()  # Float value in centimeters 0, capped to 255 cm
                 if col_data is not None:  # If None is given, then data collection failed that time
                     r,g,b,a = col_data
                     print((r, g, b))

@@ -43,7 +43,6 @@ def collect_color_sensor_data():
                 pass
             
     except BaseException:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)
-        print("exception")
         pass
     finally:
         print("Done collecting US distance samples")

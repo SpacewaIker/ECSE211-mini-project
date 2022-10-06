@@ -26,7 +26,7 @@ def collect_color_sensor_data():
             pass  # do nothing while waiting for first button press
         print("Touch sensor pressed")
         sleep(1)
-        print("Starting to collect US distance samples")
+        print("Starting to collect color samples")
         count = 0
         while True:
             if TOUCH_SENSOR.is_pressed():
@@ -45,7 +45,7 @@ def collect_color_sensor_data():
     except BaseException:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)
         pass
     finally:
-        print("Done collecting US distance samples")
+        print("Done collecting color samples")
         output_file.close()
         reset_brick()  # Turn off everything on the brick's hardware, and reset it
         exit()

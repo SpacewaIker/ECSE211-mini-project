@@ -30,11 +30,14 @@ def collect_color_sensor_data():
         while True:
             if TOUCHSENSOR.is_pressed():
                 col_data =  COLORSENSOR.get_value()  # Float value in centimeters 0, capped to 255 cm
-            if col_data is not None:  # If None is given, then data collection failed that time
-                r,g,b,a = col_data
-                print((r, g, b))
-                output_file.write(f"{r, g, b}\n")
-            sleep(DELAY_SEC)
+                if col_data is not None:  # If None is given, then data collection failed that time
+                    r,g,b,a = col_data
+                    print((r, g, b))
+                    output_file.write(f"{r, g, b}\n")
+                sleep(DELAY_SEC)
+            else:
+                pass
+            
     except BaseException:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)
         print("exception")
         pass

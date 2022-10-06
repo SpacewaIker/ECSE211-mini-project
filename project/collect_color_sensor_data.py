@@ -36,6 +36,7 @@ def collect_color_sensor_data():
                 output_file.write(f"{r, g, b}\n")
             sleep(DELAY_SEC)
     except BaseException:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)
+        print("exception")
         pass
     finally:
         print("Done collecting US distance samples")

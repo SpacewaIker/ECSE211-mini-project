@@ -31,7 +31,7 @@ def collect_color_sensor_data():
         while True:
             sleep(DELAY_SEC)
             if TOUCH_SENSOR.is_pressed():
-                while not TOUCH_SENSOR.is_released():
+                while TOUCH_SENSOR.is_pressed():
                     pass
                 count += 1
                 col_data = COLOR_SENSOR.get_value()  # Float value in centimeters 0, capped to 255 cm

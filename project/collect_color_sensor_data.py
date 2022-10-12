@@ -10,7 +10,7 @@ from utils.brick import EV3ColorSensor, wait_ready_sensors, TouchSensor, reset_b
 from time import sleep
 
 COLOR_SENSOR_DATA_FILE = "../data_analysis/group1/red_color.csv"
-DELAY_SEC = 0.15  # seconds of delay between measurements
+DELAY_SEC = 0.15  # button sampling rate
 # complete this based on your hardware setup
 COLOR_SENSOR = EV3ColorSensor(1)
 TOUCH_SENSOR = TouchSensor(2)
@@ -29,7 +29,8 @@ def collect_color_sensor_data():
         print("Starting to collect color samples")
         count = 0
         while True:
-            if TOUCH_SENSOR.is_pressed():
+            sleep(DELAY_SEC)
+            if TOUCH_SENSOR.is_released():
                 count += 1
                 col_data = COLOR_SENSOR.get_value()  # Float value in centimeters 0, capped to 255 cm
                 if col_data is not None:  # If None is given, then data collection failed that time
@@ -37,10 +38,6 @@ def collect_color_sensor_data():
                     print((r, g, b))
                     print(count)
                     output_file.write(f"{r, g, b}\n")
-                sleep(DELAY_SEC)
-            else:
-                sleep(DELAY_SEC)
-                pass
             
     except BaseException:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)
         pass

@@ -30,7 +30,9 @@ def collect_color_sensor_data():
         count = 0
         while True:
             sleep(DELAY_SEC)
-            if TOUCH_SENSOR.is_released():
+            if TOUCH_SENSOR.is_pressed():
+                while not TOUCH_SENSOR.is_released():
+                    pass
                 count += 1
                 col_data = COLOR_SENSOR.get_value()  # Float value in centimeters 0, capped to 255 cm
                 if col_data is not None:  # If None is given, then data collection failed that time

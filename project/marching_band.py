@@ -31,7 +31,6 @@ def toggle_drumming():
     
 
 
-    is_drumming = not is_drumming
 
 
 

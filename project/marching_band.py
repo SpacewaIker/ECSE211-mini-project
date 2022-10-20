@@ -31,6 +31,7 @@ def toggle_drumming():
 
 
 def main():
+    is_drumming = False
     toggle_drumming()
 
 

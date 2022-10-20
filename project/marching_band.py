@@ -11,6 +11,8 @@ ENABLE_DRUM_BUTTON = TouchSensor(4)
 NXT_MOTOR_1 = Motor("C")
 NXT_MOTOR_2 = Motor("B")
 
+NXT_MOTOR_2.set_power_limits(power=60)
+
 wait_ready_sensors(True) 
 
 is_drumming = False
@@ -21,7 +23,7 @@ def toggle_drumming():
         if (is_drumming):
              pass
         else:
-            NXT_MOTOR_2.set_position(30)
+            NXT_MOTOR_2.set_position_relative(30)
             # NXT_MOTOR_2.set_power(20)
             while True:
                 pass

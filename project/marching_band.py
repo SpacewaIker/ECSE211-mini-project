@@ -43,7 +43,7 @@ def toggle_drumming():
 
 
 def main():
-        is_drumming = False
+        print("this is running")
         toggle_drumming()
 
 

@@ -20,8 +20,8 @@ def toggle_drumming():
     if (is_drumming):
          pass
     else:
-        NXT_MOTOR_2.set_power(20)
         NXT_MOTOR_2.set_position(30)
+        # NXT_MOTOR_2.set_power(20)
         while True:
             pass
     

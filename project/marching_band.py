@@ -23,11 +23,8 @@ def toggle_drumming():
         if (is_drumming):
              pass
         else:
-            NXT_MOTOR_2.set_position_relative(100)
+            NXT_MOTOR_2.set_position_relative(200)
             # NXT_MOTOR_2.set_power(20)
-            while True:
-                sleep(DELAY)
-                pass
     except BaseException:
         reset_brick()
         exit(0)

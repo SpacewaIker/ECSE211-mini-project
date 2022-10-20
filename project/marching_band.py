@@ -13,9 +13,6 @@ NXT_MOTOR_2 = Motor("B")
 
 DELAY = 0.1
 
-# NXT_MOTOR_2.set_power_limits(power=60)
-# NXT_MOTOR_2.set_limits(power=60)
-
 wait_ready_sensors(True) 
 
 is_drumming = False
@@ -26,7 +23,7 @@ def toggle_drumming():
         if (is_drumming):
              pass
         else:
-            NXT_MOTOR_2.set_position_relative(30)
+            NXT_MOTOR_2.set_position_relative(100)
             # NXT_MOTOR_2.set_power(20)
             while True:
                 sleep(DELAY)

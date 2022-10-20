@@ -17,13 +17,16 @@ is_drumming = False
 
 def toggle_drumming():
     global is_drumming
-    if (is_drumming):
-         pass
-    else:
-        NXT_MOTOR_2.set_position(30)
-        # NXT_MOTOR_2.set_power(20)
-        while True:
-            pass
+    try:
+        if (is_drumming):
+             pass
+        else:
+            NXT_MOTOR_2.set_position(30)
+            # NXT_MOTOR_2.set_power(20)
+            while True:
+                pass
+    except BaseException:
+        exit()
     
 
 
@@ -33,11 +36,8 @@ def toggle_drumming():
 
 
 def main():
-    try:
         is_drumming = False
         toggle_drumming()
-    except BaseException:
-        exit()
 
 
 if __name__ == '__main__':

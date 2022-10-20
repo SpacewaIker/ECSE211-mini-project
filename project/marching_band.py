@@ -27,7 +27,7 @@ def toggle_drumming():
                 pass
     except BaseException:
         reset_brick()
-        exit()
+        exit(0)
     
 
 

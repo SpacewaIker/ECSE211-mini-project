@@ -24,7 +24,7 @@ def toggle_drumming():
              pass
         else:
             NXT_MOTOR_2.set_position_relative(70)
-            sleep(2)
+            sleep(1)
             NXT_MOTOR_2.set_position_relative(-75)
             sleep(2)
             

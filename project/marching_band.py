@@ -12,7 +12,7 @@ NXT_MOTOR_1 = Motor("C")
 NXT_MOTOR_2 = Motor("B")
 
 # NXT_MOTOR_2.set_power_limits(power=60)
-NXT_MOTOR_2.set_limits(power=60)
+# NXT_MOTOR_2.set_limits(power=60)
 
 wait_ready_sensors(True) 
 

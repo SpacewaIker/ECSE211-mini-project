@@ -15,7 +15,8 @@ wait_ready_sensors(True)
 
 is_drumming = False
 
-def toggle_drumming():    
+def toggle_drumming():
+    global is_drumming
     if (is_drumming):
         NXT_MOTOR_2.set_power(20)
         while True:

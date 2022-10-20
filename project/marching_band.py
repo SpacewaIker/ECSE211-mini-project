@@ -31,7 +31,7 @@ def toggle_drumming():
 
 
 def main():
-    pass
+    toggle_drumming()
 
 
 if __name__ == '__main__':

@@ -24,21 +24,17 @@ def do_drumming():
     do_drumming.count += 1
 
     if do_drumming.count % 4 == 0:
-        if do_drumming.motor1_is_up:
-            NXT_MOTOR_1.set_position_relative(-50)
-        else:
-            NXT_MOTOR_1.set_position_relative(50)
+        NXT_MOTOR_1.set_position_relative(do_drumming.motor1_dir * 50)
+        do_drumming.motor1_dir *= -1
 
     if do_drumming.count % 2 == 0:
-        if do_drumming.motor2_is_up:
-            NXT_MOTOR_2.set_position_relative(-50)
-        else:
-            NXT_MOTOR_2.set_position_relative(50)
+        NXT_MOTOR_2.set_position_relative(do_drumming.motor2_dir * 50)
+        do_drumming.motor2_dir *= -1
 
 # "static" variables for function do_drumming
 do_drumming.count = 0
-do_drumming.motor1_is_up = False
-do_drumming.motor2_is_up = False
+do_drumming.motor1_dir = 1  # negative is toward ground
+do_drumming.motor2_dir = 1  # positive is toward robot
 
 def play_note(dist):
     if dist == 10:

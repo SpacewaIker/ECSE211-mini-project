@@ -69,6 +69,7 @@ def main():
             if ENABLE_DRUM_BUTTON.is_pressed():
                 print("Drumming button pressed")
                 is_drumming = not is_drumming
+                sleep(0.2) # to avoid double presses
             if PLAY_NOTE_BUTTON.is_pressed():
                 print("Play note button pressed")
                 play_note(current_distance)

@@ -40,6 +40,8 @@ do_drumming.motor2_is_up = False
 
 def main():
     try:
+        input("Press any key to begin")
+
         while True:
             sleep(DELAY)
 

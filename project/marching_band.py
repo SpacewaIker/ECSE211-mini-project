@@ -71,7 +71,7 @@ def main():
                 is_drumming = not is_drumming
                 sleep(0.2) # to avoid double presses
             if PLAY_NOTE_BUTTON.is_pressed():
-                print("Play note button pressed")
+                print(f"Play note button pressed: {current_distance} cm")
                 play_note(current_distance)
             if KILL_SWITCH.is_pressed():
                 print("Kill switch pressed")

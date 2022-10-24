@@ -23,12 +23,12 @@ wait_ready_sensors(True)
 def do_drumming():
     do_drumming.count += 1
 
-    if do_drumming.count % 4 == 0:
-        NXT_MOTOR_1.set_position_relative(do_drumming.motor1_dir * 50)
+    if do_drumming.count % 3 == 0:
+        NXT_MOTOR_1.set_position_relative(do_drumming.motor1_dir * 45)
         do_drumming.motor1_dir *= -1
 
     if do_drumming.count % 2 == 0:
-        NXT_MOTOR_2.set_position_relative(do_drumming.motor2_dir * 50)
+        NXT_MOTOR_2.set_position_relative(do_drumming.motor2_dir * 45)
         do_drumming.motor2_dir *= -1
 
 # "static" variables for function do_drumming
@@ -96,6 +96,9 @@ def main():
         print(e)
 
     finally:
+        NXT_MOTOR_1.set_position(0)
+        NXT_MOTOR_2.set_position(0)
+        sleep(0.5)
         reset_brick()
         exit(0)
 

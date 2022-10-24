@@ -15,8 +15,6 @@ DELAY = 0.1
 
 wait_ready_sensors(True) 
 
-is_drumming = False
-
 def do_drumming():
     do_drumming.count += 1
 
@@ -39,8 +37,10 @@ do_drumming.motor2_is_up = False
 
 
 def main():
+    is_drumming = False
+
     try:
-        input("Press any key to begin")
+        input("Press enter to begin")
 
         while True:
             sleep(DELAY)
@@ -61,6 +61,9 @@ def main():
 
     except KeyboardInterrupt:
         print("Closing program now")
+
+    except BaseException as e:
+        print(e)
 
     finally:
         reset_brick()

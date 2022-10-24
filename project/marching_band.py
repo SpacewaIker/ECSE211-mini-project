@@ -13,6 +13,11 @@ NXT_MOTOR_2 = Motor("B")
 
 DELAY = 0.1
 
+A4 = sound.Sound(duration=0.3, pitch="A4", volume=85)
+C4 = sound.Sound(duration=0.3, pitch="C4", volume=85)
+E4 = sound.Sound(duration=0.3, pitch="E4", volume=85)
+A5 = sound.Sound(duration=0.3, pitch="A5", volume=85)
+
 wait_ready_sensors(True) 
 
 def do_drumming():
@@ -35,9 +40,24 @@ do_drumming.count = 0
 do_drumming.motor1_is_up = False
 do_drumming.motor2_is_up = False
 
+def play_note(dist):
+    if dist == 10:
+        A4.play()
+        A4.wait_done()
+    elif dist == 20:
+        C4.play()
+        C4.wait_done()
+    elif dist == 30:
+        E4.play()
+        E4.wait_done()
+    elif dist == 40:
+        A5.play()
+        A5.wait_done()
+    
 
 def main():
     is_drumming = False
+    current_distance = 10
 
     try:
         input("Press enter to begin")
@@ -47,9 +67,11 @@ def main():
 
             # buttons
             if ENABLE_DRUM_BUTTON.is_pressed():
+                print("Drumming button pressed")
                 is_drumming = not is_drumming
             if PLAY_NOTE_BUTTON.is_pressed():
-                pass
+                print("Play note button pressed")
+                play_note(current_distance)
             if KILL_SWITCH.is_pressed():
                 print("Kill switch pressed")
                 break
@@ -57,6 +79,17 @@ def main():
             # actions
             if is_drumming:
                 do_drumming()
+
+            # distance
+            current_distance = US_SENSOR.get_distance()
+            if current_distance < 15:
+                current_distance = 10
+            elif current_distance < 25:
+                current_distance = 20
+            elif current_distance < 35:
+                current_distance = 30
+            else:
+                current_distance = 40
 
 
     except KeyboardInterrupt:

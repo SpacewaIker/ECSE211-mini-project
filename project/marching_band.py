@@ -81,7 +81,7 @@ def main():
                 do_drumming()
 
             # distance
-            current_distance = US_SENSOR.get_distance()
+            current_distance = US_SENSOR.get_cm()
             if current_distance < 15:
                 current_distance = 10
             elif current_distance < 25:

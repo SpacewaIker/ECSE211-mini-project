@@ -17,37 +17,53 @@ wait_ready_sensors(True)
 
 is_drumming = False
 
-def toggle_drumming():
-    global is_drumming
-    try:
-        if (is_drumming):
-             pass
+def do_drumming():
+    do_drumming.count += 1
+
+    if do_drumming.count % 4 == 0:
+        if do_drumming.motor1_is_up:
+            NXT_MOTOR_1.set_position_relative(-50)
         else:
-            # NXT_MOTOR_2.set_position_relative(70)
-            # sleep(1)
-            # NXT_MOTOR_2.set_position_relative(-75)
-            # sleep(2)
-            NXT_MOTOR_2.set_power(20)
-            while True:
-                sleep(0.1)
-            
-            # NXT_MOTOR_2.set_power(20)
-    except BaseException:
-        reset_brick()
-        exit(0)
-    
+            NXT_MOTOR_1.set_position_relative(50)
 
+    if do_drumming.count % 2 == 0:
+        if do_drumming.motor2_is_up:
+            NXT_MOTOR_2.set_position_relative(-50)
+        else:
+            NXT_MOTOR_2.set_position_relative(50)
 
-
-
+# "static" variables for function do_drumming
+do_drumming.count = 0
+do_drumming.motor1_is_up = False
+do_drumming.motor2_is_up = False
 
 
 def main():
-        print("this is running")
-        toggle_drumming()
+    try:
+        while True:
+            sleep(DELAY)
+
+            # buttons
+            if ENABLE_DRUM_BUTTON.is_pressed():
+                is_drumming = not is_drumming
+            if PLAY_NOTE_BUTTON.is_pressed():
+                pass
+            if KILL_SWITCH.is_pressed():
+                print("Kill switch pressed")
+                break
+
+            # actions
+            if is_drumming:
+                do_drumming()
+
+
+    except KeyboardInterrupt:
+        print("Closing program now")
+
+    finally:
+        reset_brick()
+        exit(0)
 
 
 if __name__ == '__main__':
     main()
-
-

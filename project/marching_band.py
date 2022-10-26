@@ -69,7 +69,11 @@ def main():
                 sleep(0.2) # to avoid double presses
             if PLAY_NOTE_BUTTON.is_pressed():
                 print(f"Play note button pressed: {current_distance} cm")
-                play_note(current_distance)
+                try:
+                    play_note(current_distance)
+                except Exception:
+                    pass
+                    
             if KILL_SWITCH.is_pressed():
                 print("Kill switch pressed")
                 break

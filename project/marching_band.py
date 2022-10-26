@@ -88,9 +88,9 @@ def main():
                 current_distance = 10
             elif current_distance < 25:
                 current_distance = 20
-            elif current_distance < 35:
+            elif current_distance < 33:
                 current_distance = 30
-            elif (current_distance < 45):
+            elif (current_distance < 50):
                 current_distance = 40
             else:
                 current_distance = None

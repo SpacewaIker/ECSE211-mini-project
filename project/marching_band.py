@@ -37,7 +37,9 @@ do_drumming.motor1_dir = 1  # negative is toward ground
 do_drumming.motor2_dir = 1  # positive is toward robot
 
 def play_note(dist):
-    if dist == 10:
+    if (dist == None):
+        return 
+    elif dist == 10:
         A4.play()
         A4.wait_done()
     elif dist == 20:
@@ -79,14 +81,20 @@ def main():
 
             # distance
             current_distance = US_SENSOR.get_cm()
-            if current_distance < 15:
+            if (current_distance < 8):
+                current_distance = None
+                print("Wrong note")
+            elif (current_distance < 15):
                 current_distance = 10
             elif current_distance < 25:
                 current_distance = 20
             elif current_distance < 35:
                 current_distance = 30
-            else:
+            elif (current_distance < 45):
                 current_distance = 40
+            else:
+                current_distance = None
+                print("Wrong note")
 
 
     except KeyboardInterrupt:

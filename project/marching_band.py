@@ -13,10 +13,10 @@ NXT_MOTOR_2 = Motor("B")
 
 DELAY = 0.1
 
-A3 = sound.Sound(duration=0.3, pitch="A3", volume=85)
-A4 = sound.Sound(duration=0.3, pitch="A4", volume=85)
-A5 = sound.Sound(duration=0.3, pitch="A5", volume=85)
-A6 = sound.Sound(duration=0.3, pitch="A6", volume=85)
+A5 = sound.Sound(duration=0.3, pitch="A5", volume=100)
+A6 = sound.Sound(duration=0.3, pitch="A6", volume=100)
+A7 = sound.Sound(duration=0.3, pitch="A7", volume=100)
+A8 = sound.Sound(duration=0.3, pitch="A8", volume=100)
 
 wait_ready_sensors(True) 
 
@@ -40,11 +40,11 @@ def play_note(dist):
     if (dist == None):
         return 
     elif dist == 10:
-        A4.play()
-        A4.wait_done()
+        A7.play()
+        A7.wait_done()
     elif dist == 20:
-        A3.play()
-        A3.wait_done()
+        A8.play()
+        A8.wait_done()
     elif dist == 30:
         A6.play()
         A6.wait_done()

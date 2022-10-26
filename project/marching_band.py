@@ -11,6 +11,9 @@ ENABLE_DRUM_BUTTON = TouchSensor(4)
 NXT_MOTOR_1 = Motor("C")
 NXT_MOTOR_2 = Motor("B")
 
+NXT_MOTOR_1.reset_position()
+NXT_MOTOR_2.reset_position()
+
 DELAY = 0.1
 
 A5 = sound.Sound(duration=0.3, pitch="A5", volume=100)
@@ -41,16 +44,12 @@ def play_note(dist):
         return 
     elif dist == 10:
         A7.play()
-        A7.wait_done()
     elif dist == 20:
         A8.play()
-        A8.wait_done()
     elif dist == 30:
         A6.play()
-        A6.wait_done()
     elif dist == 40:
         A5.play()
-        A5.wait_done()
     
 
 def main():

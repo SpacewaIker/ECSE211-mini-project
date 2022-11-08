@@ -18,7 +18,7 @@ def main():
             inp = input("press to move a bit")
             if (inp == "x"):
                 break
-            WHEEL_MOTOR.set_position_relative(10)
+            WHEEL_MOTOR.set_position(10)
     except KeyboardInterrupt:
         print("Ending program")
     except Exception as e:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)

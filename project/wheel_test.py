@@ -13,9 +13,10 @@ wait_ready_sensors(True)
 def main():
     try:
         input("enter something to start")
-
+        WHEEL_MOTOR.set_limits(power = 20, speed = 20)
         while (True):
             input("press to move a bit")
+
             WHEEL_MOTOR.set_position_relative(100)
     except KeyboardInterrupt:
         print("Ending program")

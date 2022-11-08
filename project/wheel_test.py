@@ -13,7 +13,7 @@ wait_ready_sensors(True)
 def main():
     try:
         input("enter something to start")
-        WHEEL_MOTOR.set_limits(power = 50, dps = 50)
+        WHEEL_MOTOR.set_limits(power = 0, dps = 0)
         while (True):
             inp = input("press to move a bit")
             if (inp == "x"):

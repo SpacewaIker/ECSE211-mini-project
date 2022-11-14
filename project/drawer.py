@@ -68,10 +68,6 @@ def getInputMatrix():
                         out[row].append(0)
                     break
 
-
-
-
-
     if (oneCount > 15):
         print("Too many 1s entered")
         exit(1)

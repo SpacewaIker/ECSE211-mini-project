@@ -137,10 +137,11 @@ def main():
                     raise Exception("Kill switch has been pressed")
                 # cube = number of representing distant (0..4)
                 if (matrix[row][cube] == 1):
+                    ourSleep(SLEEP_TIME_BIG)
                     loadCube()
-                    ourSleep(SLEEP_TIME_SMALL)
+                    ourSleep(SLEEP_TIME_BIG)
                     pushCube(cube)    
-                ourSleep(SLEEP_TIME_SMALL)
+                ourSleep(SLEEP_TIME_BIG)
             moveRobot()
             ourSleep(SLEEP_TIME_SMALL)
 

@@ -108,7 +108,10 @@ def pushCube(distance):
     PISTON_MOTOR.set_position(rotDist)
     while (PISTON_MOTOR.get_position() < rotDist - 1):
         pass
+
     PISTON_MOTOR.set_position(0)
+    while PISTON_MOTOR.get_position() > 1:
+        pass
 
 def moveRobot():
     WHEEL_MOTOR.set_position_relative(HORIZONTAL_DISTANCE)

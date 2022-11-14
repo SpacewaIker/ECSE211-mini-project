@@ -95,15 +95,15 @@ def pushCube(distance):
     """function to move piston to distance and retract"""
     rotDist = 0
     if (distance == 0):
-        rotDist = 100
+        rotDist = 142
     elif (distance == 1):
-        rotDist = 200
+        rotDist = 254
     elif (distance == 2):
-        rotDist = 300
+        rotDist = 366
     elif (distance == 3):
-        rotDist = 400
+        rotDist = 478
     elif (distance == 4):
-        rotDist = 500
+        rotDist = 590
     
     PISTON_MOTOR.set_position(rotDist)
     ourSleep(SLEEP_TIME_BIG)

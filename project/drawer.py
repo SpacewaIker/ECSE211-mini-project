@@ -106,8 +106,7 @@ def pushCube(distance):
     elif (distance == 4):
         rotDist = 590
     PISTON_MOTOR.set_position(rotDist)
-    while (PISTON_MOTOR.get_position() < rotDist):
-        print(PISTON_MOTOR.get_position())
+    while (PISTON_MOTOR.get_position() < rotDist - 1):
         pass
     PISTON_MOTOR.set_position(0)
 

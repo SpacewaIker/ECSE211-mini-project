@@ -108,9 +108,16 @@ def moveRobot():
 
 
 def main():
-    matrix = getInputMatrix()
+    # matrix = getInputMatrix()
+    matrix = [
+        [0,0,0,0,0],
+        [1,1,1,1,1],
+        [0,1,0,1,0],
+        [0,1,0,1,0],
+        [0,0,1,0,1],
+    ]
     print(matrix)
-    exit(1)
+    input("press enter to start")
     try:
         # PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
         for row in range(len(matrix)):

@@ -31,6 +31,7 @@ def getInputMatrix():
         out.append([])
         for _ in range(5):
             while (True):
+                sleep(SLEEP_TIME_BIG)
                 if (not randomize):
                     print("Press a button")
                     while (not ONE_BUTTON.is_pressed() and not ZERO_BUTTON.is_pressed()):
@@ -47,7 +48,7 @@ def getInputMatrix():
                         out[row].append(0)
                         print("You have pressed 0")
                         break
-                    
+
                     if (ONE_BUTTON.is_pressed()):
                         while ONE_BUTTON.is_pressed():
                             pass

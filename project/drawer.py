@@ -79,11 +79,11 @@ def getInputMatrix():
 
 
 def ourSleep(t):
-    first = time.time()
+    first = time()
     while (True):
         if (KILL_SWITCH.is_pressed()):
             raise Exception("Kill switch has been pressed")
-        end = time.time()
+        end = time()
         if (end - first >= t):
             return
 

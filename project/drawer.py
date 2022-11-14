@@ -5,8 +5,8 @@ import random
 
 WHEEL_MOTOR = Motor("B")
 PISTON_MOTOR = Motor("C")
-ZERO_BUTTON = TouchSensor(3)
-ONE_BUTTON = TouchSensor(2) 
+ONE_BUTTON = TouchSensor(3) 
+ZERO_BUTTON = TouchSensor(2)
 
 WHEEL_MOTOR.reset_position()
 PISTON_MOTOR.reset_position()
@@ -42,21 +42,19 @@ def getInputMatrix():
                     else:
                         out[row].append(0)
                     break
-                # if (ZERO_BUTTON.is_pressed()):
-                #     out[row][bit] = 0
-                #     break
-                # if (ONE_BUTTON.is_pressed()):
-                #     out[row][bit] = 1
-                #     break
-                if (inp == "01"):
-                    randomize = True
-                if (inp == "0"):
-                    out[row].append(0)
+
+
+
+                if (ZERO_BUTTON.is_pressed()):
+                    out[row].append( 0)
                     break
-                if (inp == "1"):
-                    oneCount += 1
+                if (ONE_BUTTON.is_pressed()):
                     out[row].append(1)
                     break
+                if (ZERO_BUTTON.is_pressed() and ONE_BUTTON.is_pressed()):
+                    randomize = True
+
+                    
     if (oneCount > 15):
         print("Too many 1s entered")
         exit(1)

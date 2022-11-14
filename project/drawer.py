@@ -33,6 +33,8 @@ def getInputMatrix():
             while (True):
                 if (not randomize):
                     print("Press a button")
+                    while (not ONE_BUTTON.is_pressed() and not ZERO_BUTTON.is_pressed()):
+                        pass
                     if (ZERO_BUTTON.is_pressed()):
                         while ZERO_BUTTON.is_pressed():
                             pass

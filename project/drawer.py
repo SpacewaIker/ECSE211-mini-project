@@ -18,6 +18,7 @@ SPEED_LIMIT = 90
 HORIZONTAL_DISTANCE = 112
 SLEEP_TIME_SMALL = 1
 SLEEP_TIME_BIG = 2
+SLEEP_TIME_BIGGER = 4
 
 WHEEL_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
 PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
@@ -95,22 +96,17 @@ def pushCube(distance):
     """function to move piston to distance and retract"""
     rotDist = 0
     if (distance == 0):
-        print(0)
         rotDist = 142
     elif (distance == 1):
         rotDist = 254
-        print(1)
     elif (distance == 2):
-        print(2)
         rotDist = 366
     elif (distance == 3):
         rotDist = 478
-        print(3)
     elif (distance == 4):
         rotDist = 590
-        print(4)
     PISTON_MOTOR.set_position(rotDist)
-    ourSleep(SLEEP_TIME_BIG)
+    ourSleep(SLEEP_TIME_BIGGER)
     PISTON_MOTOR.set_position(0)
 
 def moveRobot():

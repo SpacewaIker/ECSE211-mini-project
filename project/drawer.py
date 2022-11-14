@@ -79,7 +79,7 @@ def getInputMatrix():
 
 def loadCube():
     """function to load cube, retract slightly to load"""
-    PISTON_MOTOR.set_position(-20)
+    PISTON_MOTOR.set_position(-60)
     sleep(SLEEP_TIME_BIG)
     PISTON_MOTOR.set_position(0)
     sleep(SLEEP_TIME_BIG)

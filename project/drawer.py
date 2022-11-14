@@ -32,7 +32,15 @@ def getInputMatrix():
         for _ in range(5):
             while (True):
                 if (not randomize):
-                    inp = input("enter 1 or 0: ")
+                    if (ZERO_BUTTON.is_pressed()):
+                        out[row].append(0)
+                        break
+                    if (ONE_BUTTON.is_pressed()):
+                        out[row].append(1)
+                        break
+                    if (ZERO_BUTTON.is_pressed() and ONE_BUTTON.is_pressed()):
+                        randomize = True
+
                 else:
                     randomBit = random.randint(0, 1)
                     if (randomBit == 1):
@@ -45,14 +53,6 @@ def getInputMatrix():
 
 
 
-                if (ZERO_BUTTON.is_pressed()):
-                    out[row].append( 0)
-                    break
-                if (ONE_BUTTON.is_pressed()):
-                    out[row].append(1)
-                    break
-                if (ZERO_BUTTON.is_pressed() and ONE_BUTTON.is_pressed()):
-                    randomize = True
 
 
     if (oneCount > 15):

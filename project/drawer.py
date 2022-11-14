@@ -54,7 +54,7 @@ def getInputMatrix():
                 if (ZERO_BUTTON.is_pressed() and ONE_BUTTON.is_pressed()):
                     randomize = True
 
-                    
+
     if (oneCount > 15):
         print("Too many 1s entered")
         exit(1)
@@ -94,6 +94,8 @@ def moveRobot():
 
 def main():
     matrix = getInputMatrix()
+    print(matrix)
+    exit(1)
     try:
         # PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
         for row in range(len(matrix)):

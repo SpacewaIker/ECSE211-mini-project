@@ -104,7 +104,6 @@ def pushCube(distance):
         rotDist = 478
     elif (distance == 4):
         rotDist = 590
-    
     PISTON_MOTOR.set_position(rotDist)
     ourSleep(SLEEP_TIME_BIG)
     PISTON_MOTOR.set_position(0)

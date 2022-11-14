@@ -14,8 +14,11 @@ PISTON_MOTOR.reset_position()
 POWER_LIMIT = 70
 SPEED_LIMIT = 70
 HORIZONTAL_DISTANCE = 112
-SLEEP_TIME = 0.1
+SLEEP_TIME_SMALL = 0.5
+SLEEP_TIME_BIG = 1
 
+WHEEL_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
+PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
 
 wait_ready_sensors(True) 
 
@@ -62,11 +65,29 @@ def getInputMatrix():
 
 def loadCube():
     """function to load cube, retract slightly to load"""
+    PISTON_MOTOR.set_position_relative(-45)
+    sleep(SLEEP_TIME_BIG)
+    PISTON_MOTOR.set_position_relative(45)
+    sleep(SLEEP_TIME_BIG)
     pass
 
 def pushCube(distance):
     """function to move piston to distance and retract"""
-    pass
+    rotDist = 0
+    if (distance == 0):
+        rotDist = 100
+    elif (distance == 1):
+        rotDist = 200
+    elif (distance == 2):
+        rotDist = 300
+    elif (distance == 3):
+        rotDist = 400
+    elif (distance == 4):
+        rotDist = 500
+    
+    PISTON_MOTOR.set_position(rotDist)
+    sleep(SLEEP_TIME_BIG)
+    PISTON_MOTOR.set_position(0)
 
 def moveRobot():
     WHEEL_MOTOR.set_position_relative(HORIZONTAL_DISTANCE)
@@ -76,18 +97,17 @@ def moveRobot():
 def main():
     matrix = getInputMatrix()
     try:
-        WHEEL_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
-        PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
         # PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
         for row in range(len(matrix)):
             for cube in range(len(matrix[0]), 0, -1):
                 # cube = number of representing distant (0..4)
                 if (matrix[row][cube] == 1):
                     loadCube()
+                    sleep(SLEEP_TIME_SMALL)
                     pushCube(cube)    
-                sleep(SLEEP_TIME)
+                sleep(SLEEP_TIME_SMALL)
             moveRobot()
-            sleep(SLEEP_TIME)
+            sleep(SLEEP_TIME_SMALL)
 
                 
 

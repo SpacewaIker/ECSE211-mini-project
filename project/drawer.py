@@ -121,7 +121,7 @@ def main():
     try:
         # PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
         for row in range(len(matrix)):
-            for cube in range(len(matrix[0]), 0, -1):
+            for cube in range(len(matrix[0]) - 1, -1, -1):
                 # cube = number of representing distant (0..4)
                 if (matrix[row][cube] == 1):
                     loadCube()

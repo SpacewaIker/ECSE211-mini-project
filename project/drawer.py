@@ -136,6 +136,7 @@ def main():
                     ourSleep(SLEEP_TIME_BIG)
                     loadCube()
                     ourSleep(SLEEP_TIME_BIG)
+                    print(cube)
                     pushCube(cube)    
                 ourSleep(SLEEP_TIME_BIG)
             moveRobot()

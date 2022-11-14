@@ -89,7 +89,7 @@ def ourSleep(t):
 
 def loadCube():
     """function to load cube, retract slightly to load"""
-    PISTON_MOTOR.set_position(-130)
+    PISTON_MOTOR.set_position(-160)
     ourSleep(SLEEP_TIME_BIG)
     PISTON_MOTOR.set_position(0)
     ourSleep(SLEEP_TIME_BIG)

@@ -7,6 +7,7 @@ WHEEL_MOTOR = Motor("B")
 PISTON_MOTOR = Motor("C")
 ONE_BUTTON = TouchSensor(3) 
 ZERO_BUTTON = TouchSensor(2)
+KILL_SWITCH = TouchSensor(4)
 
 WHEEL_MOTOR.reset_position()
 PISTON_MOTOR.reset_position()
@@ -14,8 +15,8 @@ PISTON_MOTOR.reset_position()
 POWER_LIMIT = 70
 SPEED_LIMIT = 70
 HORIZONTAL_DISTANCE = 112
-SLEEP_TIME_SMALL = 0.5
-SLEEP_TIME_BIG = 1
+SLEEP_TIME_SMALL = 1
+SLEEP_TIME_BIG = 2
 
 WHEEL_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
 PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
@@ -78,9 +79,9 @@ def getInputMatrix():
 
 def loadCube():
     """function to load cube, retract slightly to load"""
-    PISTON_MOTOR.set_position_relative(-45)
+    PISTON_MOTOR.set_position(-20)
     sleep(SLEEP_TIME_BIG)
-    PISTON_MOTOR.set_position_relative(45)
+    PISTON_MOTOR.set_position(0)
     sleep(SLEEP_TIME_BIG)
     pass
 
@@ -122,6 +123,8 @@ def main():
         # PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
         for row in range(len(matrix)):
             for cube in range(len(matrix[0]) - 1, -1, -1):
+                if (KILL_SWITCH.is_pressed()):
+                    raise Exception("Kill switch has been pressed")
                 # cube = number of representing distant (0..4)
                 if (matrix[row][cube] == 1):
                     loadCube()
@@ -144,6 +147,8 @@ def main():
     finally:
         WHEEL_MOTOR.set_position(0)
         PISTON_MOTOR.set_position(0)
+        reset_brick()
+        exit(1)
 
 
 if __name__ == "__main__":

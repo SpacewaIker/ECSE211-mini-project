@@ -1,6 +1,7 @@
 from utils import sound
 from utils.brick import TouchSensor, wait_ready_sensors, EV3UltrasonicSensor, reset_brick, Motor, BP
 from time import sleep
+from time import time
 import random
 
 WHEEL_MOTOR = Motor("B")
@@ -77,12 +78,21 @@ def getInputMatrix():
     return out
 
 
+def ourSleep(t):
+    first = time.time()
+    while (True):
+        if (KILL_SWITCH.is_pressed()):
+            raise Exception("Kill switch has been pressed")
+        end = time.time()
+        if (end - first >= t):
+            return
+
 def loadCube():
     """function to load cube, retract slightly to load"""
     PISTON_MOTOR.set_position(-100)
-    sleep(SLEEP_TIME_BIG)
+    ourSleep(SLEEP_TIME_BIG)
     PISTON_MOTOR.set_position(0)
-    sleep(SLEEP_TIME_BIG)
+    ourSleep(SLEEP_TIME_BIG)
     pass
 
 def pushCube(distance):
@@ -100,7 +110,7 @@ def pushCube(distance):
         rotDist = 500
     
     PISTON_MOTOR.set_position(rotDist)
-    sleep(SLEEP_TIME_BIG)
+    ourSleep(SLEEP_TIME_BIG)
     PISTON_MOTOR.set_position(0)
 
 def moveRobot():
@@ -128,11 +138,11 @@ def main():
                 # cube = number of representing distant (0..4)
                 if (matrix[row][cube] == 1):
                     loadCube()
-                    sleep(SLEEP_TIME_SMALL)
+                    ourSleep(SLEEP_TIME_SMALL)
                     pushCube(cube)    
-                sleep(SLEEP_TIME_SMALL)
+                ourSleep(SLEEP_TIME_SMALL)
             moveRobot()
-            sleep(SLEEP_TIME_SMALL)
+            ourSleep(SLEEP_TIME_SMALL)
 
                 
 

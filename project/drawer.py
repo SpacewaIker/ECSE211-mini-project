@@ -13,7 +13,7 @@ WHEEL_MOTOR.reset_position()
 PISTON_MOTOR.reset_position()
 
 POWER_LIMIT = 70
-SPEED_LIMIT = 70
+SPEED_LIMIT = 90
 HORIZONTAL_DISTANCE = 112
 SLEEP_TIME_SMALL = 1
 SLEEP_TIME_BIG = 2
@@ -79,7 +79,7 @@ def getInputMatrix():
 
 def loadCube():
     """function to load cube, retract slightly to load"""
-    PISTON_MOTOR.set_position(-60)
+    PISTON_MOTOR.set_position(-100)
     sleep(SLEEP_TIME_BIG)
     PISTON_MOTOR.set_position(0)
     sleep(SLEEP_TIME_BIG)

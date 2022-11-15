@@ -91,10 +91,9 @@ def loadCube():
 
 def set_pos_and_wait(motor, pos):
     motor.set_position(pos)
-    while motor.get_position() < pos - 1:
+    while abs(motor.get_position() - pos) > 1:
         if (KILL_SWITCH.is_pressed()):
             raise Exception("Kill switch has been pressed")
-        pass
 
 def pushCube(distance):
     """function to move piston to distance and retract"""
@@ -136,7 +135,6 @@ def main():
                     sleep_with_killswitch(SLEEP_TIME_BIG)
                     loadCube()
                     sleep_with_killswitch(SLEEP_TIME_BIG)
-                    print(cube)
                     pushCube(cube)    
                 sleep_with_killswitch(SLEEP_TIME_BIG)
             moveRobot()

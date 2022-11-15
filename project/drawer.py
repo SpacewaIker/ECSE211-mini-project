@@ -14,7 +14,7 @@ WHEEL_MOTOR.reset_position()
 PISTON_MOTOR.reset_position()
 
 POWER_LIMIT = 80
-SPEED_LIMIT = 180
+SPEED_LIMIT = 240
 HORIZONTAL_DISTANCE = 112
 SLEEP_TIME_SMALL = 1
 SLEEP_TIME_BIG = 2
@@ -119,8 +119,8 @@ def moveRobot():
 def main():
     # matrix = getInputMatrix()
     matrix = [
-        [0,0,0,0,0],
-        [1,1,1,1,1],
+        [0,1,0,1,0],
+        [1,0,1,0,1],
         [0,1,0,1,0],
         [0,1,0,1,0],
         [0,0,1,0,1],
@@ -132,11 +132,11 @@ def main():
             for cube in range(len(matrix[0]) - 1, -1, -1):
                 # cube = number of representing distant (0..4)
                 if (matrix[row][cube] == 1):
-                    sleep_with_killswitch(SLEEP_TIME_BIG)
+                    sleep_with_killswitch(SLEEP_TIME_SMALL)
                     loadCube()
-                    sleep_with_killswitch(SLEEP_TIME_BIG)
+                    sleep_with_killswitch(SLEEP_TIME_SMALL)
                     pushCube(cube)    
-                sleep_with_killswitch(SLEEP_TIME_BIG)
+                sleep_with_killswitch(SLEEP_TIME_SMALL)
             moveRobot()
             sleep_with_killswitch(SLEEP_TIME_SMALL)
 
@@ -148,6 +148,7 @@ def main():
         exit(1)
     finally:
         set_pos_and_wait(PISTON_MOTOR, 0)
+        set_pos_and_wait(WHEEL_MOTOR, 0)
         reset_brick()
 
 

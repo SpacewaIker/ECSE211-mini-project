@@ -10,11 +10,11 @@ ONE_BUTTON = TouchSensor(3)
 ZERO_BUTTON = TouchSensor(2)
 KILL_SWITCH = TouchSensor(4)
 
-WHEEL_MOTOR.reset_position()
-PISTON_MOTOR.reset_position()
+WHEEL_MOTOR.reset_pos_and_wait()
+PISTON_MOTOR.reset_pos_and_wait()
 
-POWER_LIMIT = 70
-SPEED_LIMIT = 90
+POWER_LIMIT = 80
+SPEED_LIMIT = 180
 HORIZONTAL_DISTANCE = 112
 SLEEP_TIME_SMALL = 1
 SLEEP_TIME_BIG = 2
@@ -75,7 +75,7 @@ def getInputMatrix():
     return out
 
 
-def ourSleep(t):
+def sleep_with_killswitch(t):
     first = time()
     while (True):
         if (KILL_SWITCH.is_pressed()):
@@ -86,11 +86,15 @@ def ourSleep(t):
 
 def loadCube():
     """function to load cube, retract slightly to load"""
-    PISTON_MOTOR.set_position(-210)
-    ourSleep(SLEEP_TIME_BIG)
-    PISTON_MOTOR.set_position(0)
-    ourSleep(SLEEP_TIME_BIG)
-    pass
+    PISTON_MOTOR.set_pos_and_wait(-210)
+    PISTON_MOTOR.set_pos_and_wait(0)
+
+def set_pos_and_wait(motor, pos):
+    motor.set_pos_and_wait(pos)
+    while motor.get_position() < pos - 1:
+        if (KILL_SWITCH.is_pressed()):
+            raise Exception("Kill switch has been pressed")
+        pass
 
 def pushCube(distance):
     """function to move piston to distance and retract"""
@@ -105,13 +109,8 @@ def pushCube(distance):
         rotDist = 478
     elif (distance == 4):
         rotDist = 590
-    PISTON_MOTOR.set_position(rotDist)
-    while (PISTON_MOTOR.get_position() < rotDist - 1):
-        pass
-
-    PISTON_MOTOR.set_position(0)
-    while PISTON_MOTOR.get_position() > 1:
-        pass
+    PISTON_MOTOR.set_pos_and_wait(rotDist)
+    PISTON_MOTOR.set_pos_and_wait(0)
 
 def moveRobot():
     WHEEL_MOTOR.set_position_relative(HORIZONTAL_DISTANCE)
@@ -130,25 +129,18 @@ def main():
     print(matrix)
     input("press enter to start")
     try:
-        # PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
         for row in range(len(matrix)):
             for cube in range(len(matrix[0]) - 1, -1, -1):
-                if (KILL_SWITCH.is_pressed()):
-                    raise Exception("Kill switch has been pressed")
                 # cube = number of representing distant (0..4)
                 if (matrix[row][cube] == 1):
-                    ourSleep(SLEEP_TIME_BIG)
+                    sleep_with_killswitch(SLEEP_TIME_BIG)
                     loadCube()
-                    ourSleep(SLEEP_TIME_BIG)
+                    sleep_with_killswitch(SLEEP_TIME_BIG)
                     print(cube)
                     pushCube(cube)    
-                ourSleep(SLEEP_TIME_BIG)
+                sleep_with_killswitch(SLEEP_TIME_BIG)
             moveRobot()
-            ourSleep(SLEEP_TIME_SMALL)
-
-                
-
-
+            sleep_with_killswitch(SLEEP_TIME_SMALL)
 
     except KeyboardInterrupt as e:
         print(e)
@@ -157,10 +149,8 @@ def main():
         print(e)
         exit(1)
     finally:
-        WHEEL_MOTOR.set_position(0)
-        PISTON_MOTOR.set_position(0)
+        PISTON_MOTOR.set_pos_and_wait(0)
         reset_brick()
-        exit(1)
 
 
 if __name__ == "__main__":

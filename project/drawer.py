@@ -10,8 +10,8 @@ ONE_BUTTON = TouchSensor(3)
 ZERO_BUTTON = TouchSensor(2)
 KILL_SWITCH = TouchSensor(4)
 
-WHEEL_MOTOR.reset_pos_and_wait()
-PISTON_MOTOR.reset_pos_and_wait()
+WHEEL_MOTOR.reset_position()
+PISTON_MOTOR.reset_position()
 
 POWER_LIMIT = 80
 SPEED_LIMIT = 180

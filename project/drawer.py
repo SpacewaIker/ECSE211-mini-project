@@ -34,7 +34,7 @@ def getInputMatrix():
         out.append([])
         for _ in range(5):
             while (True):
-                sleep(SLEEP_TIME_BIG)
+                sleep(SLEEP_TIME_SMALL)
                 if (not randomize):
                     print("Press a button")
                     while (not ONE_BUTTON.is_pressed() and not ZERO_BUTTON.is_pressed()):
@@ -136,7 +136,6 @@ def main():
                     loadCube()
                     sleep_with_killswitch(SLEEP_TIME_SMALL)
                     pushCube(cube)    
-                sleep_with_killswitch(SLEEP_TIME_SMALL)
             moveRobot()
             sleep_with_killswitch(SLEEP_TIME_SMALL)
 

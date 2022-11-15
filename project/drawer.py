@@ -86,8 +86,8 @@ def sleep_with_killswitch(t):
 
 def loadCube():
     """function to load cube, retract slightly to load"""
-    PISTON_MOTOR.set_pos_and_wait(-210)
-    PISTON_MOTOR.set_pos_and_wait(0)
+    set_pos_and_wait(PISTON_MOTOR, -210)
+    set_pos_and_wait(PISTON_MOTOR, 0)
 
 def set_pos_and_wait(motor, pos):
     motor.set_pos_and_wait(pos)
@@ -109,8 +109,8 @@ def pushCube(distance):
         rotDist = 478
     elif (distance == 4):
         rotDist = 590
-    PISTON_MOTOR.set_pos_and_wait(rotDist)
-    PISTON_MOTOR.set_pos_and_wait(0)
+    set_pos_and_wait(PISTON_MOTOR, rotDist)
+    set_pos_and_wait(PISTON_MOTOR, 0)
 
 def moveRobot():
     WHEEL_MOTOR.set_position_relative(HORIZONTAL_DISTANCE)
@@ -149,7 +149,7 @@ def main():
         print(e)
         exit(1)
     finally:
-        PISTON_MOTOR.set_pos_and_wait(0)
+        set_pos_and_wait(PISTON_MOTOR, 0)
         reset_brick()
 
 

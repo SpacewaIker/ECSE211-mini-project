@@ -90,7 +90,7 @@ def loadCube():
     set_pos_and_wait(PISTON_MOTOR, 0)
 
 def set_pos_and_wait(motor, pos):
-    motor.set_pos_and_wait(pos)
+    motor.set_position(pos)
     while motor.get_position() < pos - 1:
         if (KILL_SWITCH.is_pressed()):
             raise Exception("Kill switch has been pressed")

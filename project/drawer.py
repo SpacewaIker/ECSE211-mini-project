@@ -146,15 +146,11 @@ def moveRobot():
 
 
 def main():
-    # matrix = getInputMatrix()
-    matrix = [
-        [0,1,0,1,0],
-        [1,0,1,0,1],
-        [0,1,0,1,0],
-        [0,1,0,1,0],
-        [0,0,1,0,1],
-    ]
-    print(matrix)
+    matrix = getInputMatrix()
+
+    print("To be printed:")
+    for row in matrix:
+        print(row)
     input("press enter to start")
     try:
         for row in range(len(matrix)):

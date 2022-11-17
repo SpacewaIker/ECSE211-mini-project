@@ -17,9 +17,7 @@ POWER_LIMIT = 80
 SPEED_LIMIT = 240
 HORIZONTAL_DISTANCE = 112
 SLEEP_INPUT = 0.1
-SLEEP_TIME_SMALL = 1
-SLEEP_TIME_BIG = 2
-SLEEP_TIME_BIGGER = 4
+SLEEP_TIME_SMALL = 0.5
 
 WHEEL_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
 PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
@@ -118,7 +116,9 @@ def main():
     print("To be printed:")
     for row in matrix:
         print(row)
-    input("press enter to start")
+    
+    sleep_with_killswitch(2)
+
     try:
         for row in range(len(matrix)):
             for cube in range(len(matrix[0]) - 1, -1, -1):

@@ -34,7 +34,29 @@ def getInputMatrix():
     for row in range(5):
         out.append([])
         for _ in range(5):
-            if randomize:
+            if not randomize:
+                one_pressed = False
+                zero_pressed = False
+                while True:
+                    sleep_with_killswitch(SLEEP_INPUT)
+                    if ONE_BUTTON.is_pressed() or ZERO_BUTTON.is_pressed():
+                        one_pressed = ONE_BUTTON.is_pressed()
+                        zero_pressed = ZERO_BUTTON.is_pressed()
+                        while ONE_BUTTON.is_pressed() or ZERO_BUTTON.is_pressed():
+                            pass
+                        break
+                
+                if one_pressed and zero_pressed:
+                    randomize = True
+                    continue
+                elif one_pressed:
+                    out[row].append(1)
+                elif zero_pressed:
+                    out[row].append(0)
+
+                print(out)
+
+            else: # if randomize
                 randomBit = random.randint(0, 1)
                 if (randomBit == 1):
                     oneCount += 1
@@ -43,28 +65,6 @@ def getInputMatrix():
                 else:
                     out[row].append(0)
                 continue
-
-            one_pressed = False
-            zero_pressed = False
-            while True:
-                sleep_with_killswitch(SLEEP_INPUT)
-                if ONE_BUTTON.is_pressed() or ZERO_BUTTON.is_pressed():
-                    one_pressed = ONE_BUTTON.is_pressed()
-                    zero_pressed = ZERO_BUTTON.is_pressed()
-                    while ONE_BUTTON.is_pressed() or ZERO_BUTTON.is_pressed():
-                        pass
-                    break
-            
-            if one_pressed and zero_pressed:
-                randomize = True
-                continue
-            elif one_pressed:
-                out[row].append(1)
-            elif zero_pressed:
-                out[row].append(0)
-
-            print(out)
-
 
             # while (True):
             #     sleep(SLEEP_TIME_SMALL)

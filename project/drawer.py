@@ -56,7 +56,7 @@ def getInputMatrix():
 
                 print(out)
 
-            else: # if randomize
+            if randomize:
                 randomBit = random.randint(0, 1)
                 if (randomBit == 1):
                     oneCount += 1

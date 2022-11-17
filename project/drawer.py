@@ -48,7 +48,6 @@ def getInputMatrix():
                 
                 if one_pressed and zero_pressed:
                     randomize = True
-                    continue
                 elif one_pressed:
                     out[row].append(1)
                 elif zero_pressed:

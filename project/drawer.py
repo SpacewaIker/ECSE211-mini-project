@@ -65,40 +65,6 @@ def getInputMatrix():
                     out[row].append(0)
                 continue
 
-            # while (True):
-            #     sleep(SLEEP_TIME_SMALL)
-            #     if (not randomize):
-            #         print("Press a button")
-            #         while (not ONE_BUTTON.is_pressed() and not ZERO_BUTTON.is_pressed()):
-            #             pass
-            #         if (ZERO_BUTTON.is_pressed() and ONE_BUTTON.is_pressed()):
-            #             while (ZERO_BUTTON.is_pressed() and ONE_BUTTON.is_pressed()):
-            #                 pass
-            #             print("You have randomized the selection")
-            #             randomize = True
-
-            #         if (ZERO_BUTTON.is_pressed()):
-            #             while ZERO_BUTTON.is_pressed():
-            #                 pass
-            #             out[row].append(0)
-            #             break
-
-            #         if (ONE_BUTTON.is_pressed()):
-            #             while ONE_BUTTON.is_pressed():
-            #                 pass
-            #             out[row].append(1)
-            #             break
-
-            #     else:
-            #         randomBit = random.randint(0, 1)
-            #         if (randomBit == 1):
-            #             oneCount += 1
-            #         if (oneCount < 15):
-            #             out[row].append(randomBit)
-            #         else:
-            #             out[row].append(0)
-            #         break
-
     if (oneCount > 15):
         print("Too many 1s entered")
         exit(1)

@@ -16,6 +16,7 @@ PISTON_MOTOR.reset_position()
 POWER_LIMIT = 80
 SPEED_LIMIT = 240
 HORIZONTAL_DISTANCE = 112
+SLEEP_INTPUT = 0.1
 SLEEP_TIME_SMALL = 1
 SLEEP_TIME_BIG = 2
 SLEEP_TIME_BIGGER = 4
@@ -46,7 +47,7 @@ def getInputMatrix():
             one_pressed = False
             zero_pressed = False
             while True:
-                sleep_with_killswitch(SLEEP_TIME_SMALL)
+                sleep_with_killswitch(SLEEP_INPUT)
                 if ONE_BUTTON.is_pressed() or ZERO_BUTTON.is_pressed():
                     one_pressed = ONE_BUTTON.is_pressed()
                     zero_pressed = ZERO_BUTTON.is_pressed()
@@ -56,6 +57,7 @@ def getInputMatrix():
             
             if one_pressed and zero_pressed:
                 randomize = True
+                continue
             elif one_pressed:
                 out[row].append(1)
             elif zero_pressed:

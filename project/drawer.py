@@ -10,6 +10,8 @@ ONE_BUTTON = TouchSensor(3)
 ZERO_BUTTON = TouchSensor(2)
 KILL_SWITCH = TouchSensor(4)
 
+CUBE_SENSOR = EV3UltrasonicSensor("S1")
+
 WHEEL_MOTOR.reset_position()
 PISTON_MOTOR.reset_position()
 
@@ -19,10 +21,23 @@ HORIZONTAL_DISTANCE = 120
 SLEEP_INPUT = 0.1
 SLEEP_TIME_SMALL = 0.5
 
+CUBE_AWAIT_SLEEP = 1
+CUBE_AWAIT_DISTANCE = 2
+
 WHEEL_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
 PISTON_MOTOR.set_limits(power = POWER_LIMIT, dps = SPEED_LIMIT)
 
 wait_ready_sensors(True) 
+
+
+def awaitCubesPlaced():
+    while (True):
+        cubeDistance1 = CUBE_SENSOR.get_cm()
+        sleep(CUBE_AWAIT_SLEEP)
+        cubeDistance2 = CUBE_SENSOR.get_cm()
+        if (cubeDistance1 == cubeDistance2 and cubeDistance1 < CUBE_AWAIT_DISTANCE):
+            break
+    return 1
 
 def getInputMatrix():
     """Returns 5x5 matrix"""
@@ -111,7 +126,12 @@ def moveRobot():
 
 
 def main():
+
+    awaitCubesPlaced()
+    print("Cubes placed")
+
     matrix = getInputMatrix()
+    print("Matrix selected")
 
     print("To be printed:")
     for row in matrix:

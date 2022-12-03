@@ -127,9 +127,6 @@ def moveRobot():
 
 def main():
 
-    # awaitCubesPlaced()
-    # print("Cubes placed")
-
     matrix = getInputMatrix()
     print("Matrix selected")
 
